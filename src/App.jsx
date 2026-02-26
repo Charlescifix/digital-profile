@@ -14,6 +14,7 @@ import {
   MapPin,
   User,
   Camera,
+  CalendarDays,
 } from "lucide-react";
 
 import SectionTitle from "@/components/shared/SectionTitle";
@@ -517,6 +518,18 @@ export default function App() {
               </p>
 
               <div className="mt-5 grid gap-2">
+                <a
+                  href="https://calendly.com/charlesnwankpa9/free-discovery-call"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-between rounded-full bg-amber-400 text-neutral-900 px-4 py-3 font-medium hover:bg-amber-500 shadow-sm hover:shadow-md transition-all"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4" /> Book a free discovery call
+                  </span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+
                 <a
                   href={`mailto:${content.contact.email}`}
                   className="inline-flex items-center justify-between rounded-full border border-neutral-900/20 bg-white px-4 py-3 hover:bg-white/80 transition-all"
