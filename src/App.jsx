@@ -577,7 +577,7 @@ export default function App() {
 
               <div className="mt-5 grid gap-2">
                 <a
-                  href="https://calendly.com/gen3block/free-discovery-call"
+                  href={import.meta.env.VITE_CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between rounded-full bg-amber-400 text-neutral-900 px-4 py-3 font-medium hover:bg-amber-500 shadow-sm hover:shadow-md transition-all"
