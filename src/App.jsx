@@ -97,9 +97,13 @@ export default function App() {
 
         {/* Row 2: Nav links — desktop only */}
         <div className="hidden md:block border-t border-neutral-900/10">
-          <nav className="mx-auto max-w-6xl px-4 py-2 flex items-center gap-6 text-sm">
+          <nav className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-center gap-6 text-sm">
             {navLinks.map((link) => (
-              <a key={link.href} className="hover:underline underline-offset-4 text-neutral-700" href={link.href}>
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative text-neutral-600 hover:text-neutral-900 transition-colors duration-200 py-1 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-amber-400 after:transition-all after:duration-300 hover:after:w-full"
+              >
                 {link.label}
               </a>
             ))}
