@@ -26,7 +26,6 @@ const navLinks = [
   { label: "Readiness", href: "#readiness" },
   { label: "Open source", href: "#open-source" },
   { label: "Speaking", href: "#speaking" },
-  { label: "Workshop", href: "/ai-workshop" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -694,6 +693,11 @@ export default function App() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <a href="/ai-workshop" className="text-sm text-neutral-700 hover:underline underline-offset-4">
+                    Workshop
+                  </a>
+                </li>
               </ul>
             </div>
 
