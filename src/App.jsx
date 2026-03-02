@@ -53,6 +53,7 @@ export default function App() {
     <div className="min-h-screen bg-[#FEFCF5] text-neutral-900">
       {/* Top nav */}
       <header className="sticky top-0 z-50 border-b border-neutral-900/10 bg-[#FEFCF5]/95 backdrop-blur">
+        {/* Row 1: Logo + CTAs */}
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
             <img src="/favicon.svg" alt="Charles Nwankpa" className="h-10 w-10" />
@@ -61,14 +62,6 @@ export default function App() {
               <div className="text-xs text-neutral-600">Founder, Gen3Block • Production AI</div>
             </div>
           </a>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            {navLinks.map((link) => (
-              <a key={link.href} className="hover:underline underline-offset-4" href={link.href}>
-                {link.label}
-              </a>
-            ))}
-          </nav>
 
           <div className="flex items-center gap-2">
             <a
@@ -100,6 +93,17 @@ export default function App() {
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
+        </div>
+
+        {/* Row 2: Nav links — desktop only */}
+        <div className="hidden md:block border-t border-neutral-900/10">
+          <nav className="mx-auto max-w-6xl px-4 py-2 flex items-center gap-6 text-sm">
+            {navLinks.map((link) => (
+              <a key={link.href} className="hover:underline underline-offset-4 text-neutral-700" href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
         {/* Mobile menu */}
