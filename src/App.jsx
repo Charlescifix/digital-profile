@@ -26,6 +26,7 @@ const navLinks = [
   { label: "Readiness", href: "#readiness" },
   { label: "Open source", href: "#open-source" },
   { label: "Speaking", href: "#speaking" },
+  { label: "Workshop", href: "/ai-workshop" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -85,6 +86,13 @@ export default function App() {
               <Library className="h-4 w-4" />
               <span>View toolkit</span>
             </a>
+            <a
+              href="/ai-workshop"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-amber-400 text-neutral-900 transition-all px-3 py-2 text-sm font-medium hover:bg-amber-500"
+            >
+              <CalendarDays className="h-4 w-4" />
+              <span>Book Workshop</span>
+            </a>
             <button
               className="md:hidden p-2 rounded-md border border-neutral-900/15 bg-white hover:bg-neutral-50 transition-colors"
               onClick={() => setMobileOpen((o) => !o)}
@@ -123,6 +131,12 @@ export default function App() {
                   className="inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-amber-200 text-neutral-900 px-3 py-2 text-sm hover:bg-amber-300 transition-all"
                 >
                   <Library className="h-4 w-4" /> View toolkit
+                </a>
+                <a
+                  href="/ai-workshop"
+                  className="inline-flex items-center gap-2 rounded-full bg-amber-400 text-neutral-900 px-3 py-2 text-sm font-medium hover:bg-amber-500 transition-all"
+                >
+                  <CalendarDays className="h-4 w-4" /> Book Workshop
                 </a>
               </div>
             </nav>
