@@ -48,7 +48,7 @@ export const content = {
       meta: "AI readiness • delivery • capability building",
       desc: "We help teams ship small, valuable wins and scale into production systems with the right strategy, skills, data, and governance.",
       ctas: [
-        { label: "Explore Gen3Block", href: "#gen3block" },
+        { label: "Explore Gen3Block", href: "https://www.gen3block.com" },
         { label: "Work with me", href: "#contact" },
       ],
     },

@@ -376,6 +376,7 @@ export default function App() {
                       <a
                         key={c.label}
                         href={c.href}
+                        {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                         className="inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-white px-3 py-2 text-sm hover:bg-white/80 transition-all"
                       >
                         {c.label} <ArrowRight className="h-4 w-4" />
@@ -443,13 +444,13 @@ export default function App() {
               </ul>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <LinkButton href={content.openSource.links[0].href}>
+                <LinkButton href={content.openSource.links[0].href} className="bg-amber-400 text-neutral-900 hover:bg-amber-500 border-none shadow-sm">
                   GitHub <ExternalLink className="h-4 w-4 ml-1" />
                 </LinkButton>
-                <LinkButton href={content.openSource.links[1].href} variant="secondary">
+                <LinkButton href={content.openSource.links[1].href} className="bg-amber-200 text-neutral-900 hover:bg-amber-300 border-none">
                   PyPI <ExternalLink className="h-4 w-4 ml-1" />
                 </LinkButton>
-                <LinkButton href={content.openSource.links[2].href} variant="outline">
+                <LinkButton href={content.openSource.links[2].href} className="bg-amber-100 text-amber-900 hover:bg-amber-200 border border-amber-200">
                   Publication <ExternalLink className="h-4 w-4 ml-1" />
                 </LinkButton>
               </div>
