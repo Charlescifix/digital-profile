@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import {
   ArrowRight,
   ExternalLink,
+  Rocket,
   ShieldCheck,
   Library,
   Mic,
@@ -15,7 +16,18 @@ import {
   User,
   Camera,
   CalendarDays,
+  Menu,
+  X,
 } from "lucide-react";
+
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Insights", href: "#insights" },
+  { label: "Readiness", href: "#readiness" },
+  { label: "Open source", href: "#open-source" },
+  { label: "Speaking", href: "#speaking" },
+  { label: "Contact", href: "#contact" },
+];
 
 import SectionTitle from "@/components/shared/SectionTitle";
 import Pill from "@/components/shared/Pill";
@@ -24,6 +36,7 @@ import { content, insights, tagColors } from "@/data/content";
 
 export default function App() {
   const [query, setQuery] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const insightCards = useMemo(() => {
     if (!query.trim()) return insights;
@@ -41,10 +54,8 @@ export default function App() {
       {/* Top nav */}
       <header className="sticky top-0 z-50 border-b border-neutral-900/10 bg-[#FEFCF5]/95 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-none border border-neutral-900/20 bg-white grid place-items-center">
-              <span className="text-sm font-semibold">CN</span>
-            </div>
+          <a href="#top" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+            <img src="/favicon.svg" alt="Charles Nwankpa" className="h-10 w-10" />
             <div className="leading-tight">
               <div className="text-sm font-semibold">{content.name}</div>
               <div className="text-xs text-neutral-600">Founder, Gen3Block • Production AI</div>
@@ -52,9 +63,9 @@ export default function App() {
           </a>
 
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            {["about", "insights", "readiness", "open-source", "speaking", "contact"].map((link) => (
-              <a key={link} className="hover:underline underline-offset-4 capitalize" href={`#${link}`}>
-                {link.replace("-", " ")}
+            {navLinks.map((link) => (
+              <a key={link.href} className="hover:underline underline-offset-4" href={link.href}>
+                {link.label}
               </a>
             ))}
           </nav>
@@ -69,13 +80,54 @@ export default function App() {
             </a>
             <a
               href="#open-source"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-amber-200 text-neutral-900 transition-all px-3 py-2 text-sm hover:bg-amber-300"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-amber-200 text-neutral-900 transition-all px-3 py-2 text-sm hover:bg-amber-300"
             >
               <Library className="h-4 w-4" />
               <span>View toolkit</span>
             </a>
+            <button
+              className="md:hidden p-2 rounded-md border border-neutral-900/15 bg-white hover:bg-neutral-50 transition-colors"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="md:hidden border-t border-neutral-900/10 bg-[#FEFCF5]">
+            <nav className="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-2 px-3 text-sm rounded-md hover:bg-neutral-100 transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="mt-3 pt-3 border-t border-neutral-900/10 flex flex-col gap-2">
+                <a
+                  href="#contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-white px-3 py-2 text-sm hover:bg-white/80 transition-all"
+                >
+                  <Mail className="h-4 w-4" /> Let's talk
+                </a>
+                <a
+                  href="#open-source"
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-900/20 bg-amber-200 text-neutral-900 px-3 py-2 text-sm hover:bg-amber-300 transition-all"
+                >
+                  <Library className="h-4 w-4" /> View toolkit
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero */}
@@ -224,10 +276,13 @@ export default function App() {
                 The person behind the systems
               </h2>
               <p className="mt-4 text-neutral-700 leading-relaxed">
-                I'm Charles Nwankpa—founder of Gen3Block, applied ML engineer, and advocate for governance-first AI. I combine deep technical capability with strategic thinking to help organisations move from AI ambition to production reality.
+                I'm Charles Nwankpa — founder of Gen3Block, AWS Certified ML Engineer, and the person organisations call when an AI pilot needs to become a production system.
               </p>
               <p className="mt-3 text-neutral-700 leading-relaxed">
-                Based in Northampton, I specialise in RAG systems, GDPR-compliant architectures, and building the kind of AI infrastructure that earns trust—not just attention.
+                Based in Northampton, I build RAG systems, GDPR-compliant AI architectures, and the kind of infrastructure that holds up under regulatory scrutiny — not just a demo. My background spans data science, AI ethics and governance, and strategic leadership, which means I think about what gets built and whether it should be built that way.
+              </p>
+              <p className="mt-3 text-neutral-700 leading-relaxed">
+                I started Gen3Block because most organisations don't have an implementation problem — they have a trust problem. I work to close that gap.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 rounded-none border border-neutral-900/15 bg-white px-3 py-1 text-sm text-neutral-800">
@@ -238,6 +293,9 @@ export default function App() {
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-none border border-neutral-900/15 bg-white px-3 py-1 text-sm text-neutral-800">
                   <ShieldCheck className="h-4 w-4" /> GDPR & Ethics
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-none border border-neutral-900/15 bg-white px-3 py-1 text-sm text-neutral-800">
+                  <Rocket className="h-4 w-4" /> MLOps
                 </span>
               </div>
             </div>
@@ -281,7 +339,7 @@ export default function App() {
                     {...(i.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="inline-flex items-center gap-2 text-sm font-medium hover:underline underline-offset-4"
                   >
-                    Read / View <ArrowRight className="h-4 w-4" />
+                    {i.href.startsWith("http") ? "Read article" : "View section"} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </CardContent>
@@ -359,7 +417,7 @@ export default function App() {
         <SectionTitle
           kicker="Open source"
           title="Tooling that raises the bar"
-          subtitle="I'm pushing more work into the open: production-ready building blocks that teams can adopt quickly and safely."
+          subtitle="Production-ready building blocks that teams can adopt quickly and safely — built to the same standard as the systems I ship for clients."
         />
 
         <div className="mt-8 grid gap-3 md:grid-cols-[1.25fr,0.75fr]">
@@ -519,7 +577,7 @@ export default function App() {
 
               <div className="mt-5 grid gap-2">
                 <a
-                  href="https://calendly.com/charlesnwankpa9/free-discovery-call"
+                  href="https://calendly.com/gen3block/free-discovery-call"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between rounded-full bg-amber-400 text-neutral-900 px-4 py-3 font-medium hover:bg-amber-500 shadow-sm hover:shadow-md transition-all"
@@ -567,25 +625,26 @@ export default function App() {
 
           <Card className="rounded-none border-neutral-900/15 bg-amber-50">
             <CardContent className="p-6 text-neutral-900">
-              <p className="text-xs tracking-[0.22em] uppercase text-neutral-500">Position</p>
+              <p className="text-xs tracking-[0.22em] uppercase text-neutral-500">Who I work with</p>
               <h3 className="mt-2 text-2xl font-semibold leading-tight">
-                Founder + engineer.
+                The right fit matters
                 <br />
-                Systems thinker.
+                as much as the
                 <br />
-                Governance-first.
+                right technology.
               </h3>
               <p className="mt-4 text-sm text-neutral-700 leading-relaxed">
-                This site is designed to read like a thought leader's home base—not an employee profile. The structure prioritises ideas, platforms, and public work.
+                I work best with organisations ready to move beyond the pilot — where the question isn't "can AI do this?" but "how do we do this safely, at scale, under scrutiny?"
               </p>
 
               <div className="mt-6 grid gap-2">
                 <div className="rounded-none border border-neutral-900/10 bg-white/60 p-4">
-                  <p className="text-sm font-semibold">What you'll see next</p>
-                  <ul className="mt-2 text-sm text-neutral-700 space-y-1">
-                    <li>• Case studies with measurable outcomes</li>
-                    <li>• A readiness scorecard teaser + methodology</li>
-                    <li>• More open-source releases and production templates</li>
+                  <p className="text-sm font-semibold">Good fit</p>
+                  <ul className="mt-2 text-sm text-neutral-700 space-y-1.5">
+                    <li>• SMEs moving AI pilots into production</li>
+                    <li>• Teams navigating GDPR and regulatory constraints</li>
+                    <li>• Leaders who need governance built in from day one</li>
+                    <li>• Organisations that want a trusted technical partner, not a vendor</li>
                   </ul>
                 </div>
               </div>
@@ -596,12 +655,71 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-neutral-900/10 bg-[#FEFCF5]">
-        <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="text-sm text-neutral-700">
-            <span className="font-medium">{content.name}</span> — building production AI systems and governance-first tooling.
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <div className="grid gap-10 sm:grid-cols-[1.6fr,1fr,1fr]">
+            {/* Brand */}
+            <div>
+              <a href="#top" className="flex items-center gap-3">
+                <img src="/favicon.svg" alt="Charles Nwankpa" className="h-8 w-8" />
+                <span className="text-sm font-semibold">{content.name}</span>
+              </a>
+              <p className="mt-3 text-sm text-neutral-600 leading-relaxed max-w-xs">
+                Building production AI systems and governance-first tooling for SMEs.
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">Navigate</p>
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="text-sm text-neutral-700 hover:underline underline-offset-4">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">Connect</p>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href={`mailto:${content.contact.email}`}
+                    className="text-sm text-neutral-700 hover:underline underline-offset-4 flex items-center gap-1.5"
+                  >
+                    <Mail className="h-3.5 w-3.5" /> Email
+                  </a>
+                </li>
+                {content.contact.social.map((s) => (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-neutral-700 hover:underline underline-offset-4 flex items-center gap-1.5"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" /> {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="text-xs text-neutral-600">
-            © {new Date().getFullYear()} {content.name}
+
+          <div className="mt-10 pt-6 border-t border-neutral-900/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="text-xs text-neutral-500">
+              © {new Date().getFullYear()} {content.name}. All rights reserved.
+            </p>
+            <a
+              href="#top"
+              className="text-xs text-neutral-500 hover:underline underline-offset-4 flex items-center gap-1"
+            >
+              Back to top <ArrowRight className="h-3 w-3 -rotate-90" />
+            </a>
           </div>
         </div>
       </footer>
